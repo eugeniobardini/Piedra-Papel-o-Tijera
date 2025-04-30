@@ -15,6 +15,10 @@ function jugar(eleccionUsuario) {
 
     const resultado = determinarGanador(eleccionUsuario, eleccionPc);
 
+    // Guardar vidas antes de cambiarlas
+    const vidasUsuarioAntes = vidasUsuario;
+    const vidasPcAntes = vidasPc;
+
     // Restar vidas si uno pierde
     if (resultado === "¡Ganaste!") {
         vidasPc--;
@@ -22,15 +26,30 @@ function jugar(eleccionUsuario) {
         vidasUsuario--;
     }
 
+    // Mostrar resultado
+    document.getElementById("resultado").innerHTML = resultado;
+
     // Actualizar contadores en pantalla
     document.getElementById("contador-vidas-us").textContent = vidasUsuario;
     document.getElementById("contador-vidas-pc").textContent = vidasPc;
 
-    // Mostrar resultado
-    document.getElementById("resultado").innerHTML = resultado;
+    // Actualizar barras de vida
+    const anchoUsuario = (vidasUsuario / 5) * 430;
+    const anchoPc = (vidasPc / 5) * 430;
 
-    actualizarBarrasDeVida();
+    const barraUsuario = document.getElementById("barra-contadora-us");
+    const barraPc = document.getElementById("barra-contadora-pc");
 
+    barraUsuario.style.width = `${anchoUsuario}px`;
+    barraPc.style.width = `${anchoPc}px`;
+
+    // Solo animar la barra que perdió vida
+    if (vidasUsuario < vidasUsuarioAntes) {
+        animarBarra("barra-contadora-us");
+    }
+    if (vidasPc < vidasPcAntes) {
+        animarBarra("barra-contadora-pc");
+    }
 
     // Comprobar si alguien ya perdió todas las vidas
     if (vidasUsuario === 0 || vidasPc === 0) {
@@ -78,4 +97,36 @@ function finalizarJuego() {
     document.getElementById("piedra").disabled = true;
     document.getElementById("papel").disabled = true;
     document.getElementById("tijera").disabled = true;
+}
+
+
+
+
+const maxVidas = 5;
+const maxAncho = 430;
+function animarBarra(barraId) {
+    const barra = document.getElementById(barraId);
+    barra.classList.remove("animar-daño"); // Elimina la animación anterior
+    barra.offsetWidth; // Fuerza el reflow para reiniciar la animación
+    barra.classList.add("animar-daño"); // Vuelve a agregar la animación
+}
+
+
+function actualizarBarrasDeVida() {
+    const anchoUsuario = (vidasUsuario / 5) * 430;
+    const anchoPc = (vidasPc / 5) * 430;
+
+    const barraUsuario = document.getElementById("barra-contadora-us");
+    const barraPc = document.getElementById("barra-contadora-pc");
+
+    barraUsuario.style.width = `${anchoUsuario}px`;
+    barraPc.style.width = `${anchoPc}px`;
+
+    // Agregar animación de daño a las barras
+    if (vidasUsuario < 5) {
+        animarBarra("barra-contadora-us");
+    }
+    if (vidasPc < 5) {
+        animarBarra("barra-contadora-pc");
+    }
 }
