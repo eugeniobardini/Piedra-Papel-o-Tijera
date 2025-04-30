@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijeras</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header id="inicio">
+        <p>Welcome to the game of</p>
+        <h1>Piedra Papel Tijeras</h1>
+        <button onclick="iniciarJuego()">Play</button>
+        <img src="img/istockphoto-1366199097-612x612-removebg-preview.png" alt="Juego de mano">
+    </header>
+
+    <main class="main" id="juego">
+        <h2>Piedra, Papel o Tijeras</h2>
+
+        <section class="marcador">
+            <div class="vidas">
+
+                <div class="vida-usuario">
+                    <div class="heart"></div>
+                    <div class="barra-vida-us"></div>
+                    <div class="barra-contadora-us" id="barra-contadora-us"></div>
+                    <div id="contador-vidas-us" class="cantidad-vida-us">5</div>
+                </div>
+
+                <div class="vida-pc">
+                    <div class="heart-pc"></div>
+                    <div class="barra-vida-pc"></div>
+                    <div class="barra-contadora-pc" id="barra-contadora-pc"></div>
+                    <div id="contador-vidas-pc" class="cantidad-vida-pc">5</div>
+                </div>
+            </div>
+
+            <div class="jugadas">
+                <div class="jugada-usuario">
+                    <img id="imagen-usuario" src="" alt="Elección del usuario">
+                </div>
+                <div class="jugada-pc">
+                    <img id="imagen-pc" src="" alt="Elección de la PC">
+                </div>
+            </div>
+            
+            <img src="img/images-2-removebg-preview.png" alt="vs" class="image-marcador">
+        </section>
+
+        <div class="button-container">
+            <button id="piedra" class="play-btn" onclick="jugar('manoPiedra')">🪨 PIEDRA</button>
+            <button id="papel" class="play-btn" onclick="jugar('manoPapel')">📄 PAPEL</button>
+            <button id="tijera" class="play-btn" onclick="jugar('manoTijeras')">✂️ TIJERAS</button>
+        </div>
+
+        <div id="resultado" class="resultado"></div>
+        <div class="img-container">
+            <img src="img/Piedra.png" alt="Piedra">
+            <img src="img/Tijeras.png" alt="Tijeras">
+            <img src="img/Papel.png" alt="Papel">
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
