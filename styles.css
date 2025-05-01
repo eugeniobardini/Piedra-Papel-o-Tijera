@@ -5,11 +5,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
-    margin: 0;
-}
-
-
 header {
     height: 100vh;
     width: 100%;
@@ -79,10 +74,11 @@ header img {
 }
 
 #juego {
-    min-height: 100vh;
     background: linear-gradient(155deg, rgba(255, 195, 113), rgb(249, 141, 143));
+    height: 110vh;
     display: none;
     padding: 2rem;
+    position: relative;
 }
 
 #juego h2 {
@@ -229,6 +225,42 @@ header img {
     margin-top: 3rem;
 }
 
+.btn-atras, 
+.btn-reiniciar {
+    padding: 1rem 2rem;
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(155deg, rgba(255, 94, 98, 1), rgba(255, 195, 113, 1));
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 1px 5px 10px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+}
+.btn-atras {
+    position: absolute;
+    z-index: 2;
+    top: 35rem;
+    left: 3.2rem;
+}
+.btn-reiniciar  {
+    position: absolute;
+    z-index: 2;
+    top: 35rem;
+    right: 4rem;
+}
+
+.btn-atras:hover {
+    transform: scale(1.1);
+    background: linear-gradient(155deg, rgba(255, 114, 118, 1), rgba(255, 205, 130, 1));
+} 
+.btn-reiniciar:hover {
+    transform: scale(1.1);
+    background: linear-gradient(155deg, rgba(255, 114, 118, 1), rgba(255, 205, 130, 1));
+}
+
 .play-btn {
     padding: 1rem 2rem;
     margin: 0 1rem;
@@ -264,7 +296,7 @@ header img {
     left: 29.2rem;
 }
 .img-container {
-    margin-top: 220px;
+    bottom: 130px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -302,7 +334,6 @@ header img {
     filter: drop-shadow(1px 10px 40px rgba(0, 0, 0, 0.5));
 }
 
-
 .resultado {
     display: flex;
     justify-content: center;
@@ -310,4 +341,118 @@ header img {
     font-family: "Open Sans";
     font-weight: 700;
     font-style: italic;
+    margin: 12px;
 }
+
+
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    header p {
+        font-size: 1.5rem;
+    }
+
+    header button {
+        font-size: 1.3rem;
+        padding: 8px 20px;
+    }
+
+    .marcador {
+        width: 95%;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .jugadas {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        margin-top: 50px;
+    }
+
+    .jugada-usuario img,
+    .jugada-pc img {
+        width: 150px;
+        margin-left: 0;
+    }
+
+    .jugada-pc img {
+        margin-left: 0;
+    }
+
+    .image-marcador {
+        display: none;
+    }
+
+    .img-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .img-container img {
+        width: 120px;
+        margin: 10px 0;
+    }
+
+    .play-btn {
+        font-size: 1.2rem;
+        padding: 0.7rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+
+    .btn-atras,
+    .btn-reiniciar {
+        font-size: 1.2rem;
+        padding: 0.7rem 1.2rem;
+    }
+
+    .cantidad-vida-us,
+    .cantidad-vida-pc {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.8rem;
+    }
+
+    header p {
+        font-size: 2rem;
+    }
+
+    .marcador {
+        width: 90%;
+        height: auto;
+    }
+
+    .jugadas {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .jugada-usuario img,
+    .jugada-pc img {
+        width: 180px;
+        margin-left: 0;
+    }
+
+    .image-marcador {
+        display: none;
+    }
+
+    .img-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .img-container img {
+        width: 140px;
+        margin: 15px;
+    }
+}
+

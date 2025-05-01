@@ -77,27 +77,6 @@ function determinarGanador(usuario, pc) {
     }
 }
 
-function actualizarBarrasDeVida() {
-    const anchoMaxUsuario = 400;
-    const anchoMaxPc = 400;
-
-    const anchoUsuario = (vidasUsuario / 5) * anchoMaxUsuario;
-    const anchoPc = (vidasPc / 5) * anchoMaxPc;
-
-    document.getElementById("barra-contadora-us").style.width = `${anchoUsuario}px`;
-    document.getElementById("barra-contadora-pc").style.width = `${anchoPc}px`;
-}
-
-
-function finalizarJuego() {
-    let mensajeFinal = vidasUsuario === 0 ? "¡La computadora gana el juego! 😭" : "¡Ganaste el juego! 🎉";
-    document.getElementById("resultado").innerHTML = mensajeFinal;
-
-    // Desactivar botones para que no puedan seguir jugando
-    document.getElementById("piedra").disabled = true;
-    document.getElementById("papel").disabled = true;
-    document.getElementById("tijera").disabled = true;
-}
 
 
 
@@ -130,3 +109,63 @@ function actualizarBarrasDeVida() {
         animarBarra("barra-contadora-pc");
     }
 }
+
+
+function finalizarJuego() {
+    let mensajeFinal = vidasUsuario === 0 ? "¡La computadora gana el juego! 😭" : "¡Ganaste el juego! 🎉";
+    document.getElementById("resultado").innerHTML = mensajeFinal;
+
+    // Desactivar botones para que no puedan seguir jugando
+    document.getElementById("piedra").disabled = true;
+    document.getElementById("papel").disabled = true;
+    document.getElementById("tijera").disabled = true;
+}
+
+
+function volverAlInicio() {
+    document.getElementById("juego").style.display = "none";
+    document.getElementById("inicio").style.display = "flex"; // usa 'flex' porque header es un flex-container
+
+    // (Opcional) Restaurar vidas y barras si vuelves desde mitad del juego:
+    vidasUsuario = 5;
+    vidasPc = 5;
+    document.getElementById("contador-vidas-us").textContent = vidasUsuario;
+    document.getElementById("contador-vidas-pc").textContent = vidasPc;
+    actualizarBarrasDeVida();
+
+    // (Opcional) Volver a activar botones
+    document.getElementById("piedra").disabled = false;
+    document.getElementById("papel").disabled = false;
+    document.getElementById("tijera").disabled = false;
+
+    // (Opcional) Resetear el resultado
+    document.getElementById("resultado").innerHTML = "";
+}
+
+
+function reiniciarJuego() {
+    // Restaurar vidas
+    vidasUsuario = 5;
+    vidasPc = 5;
+
+    // Restaurar contadores
+    document.getElementById("contador-vidas-us").textContent = vidasUsuario;
+    document.getElementById("contador-vidas-pc").textContent = vidasPc;
+
+    // Restaurar barras de vida
+    actualizarBarrasDeVida();
+
+    // Restaurar imágenes a un estado inicial (puedes usar una imagen genérica o vacía)
+    document.getElementById("imagen-usuario").src = "img/placeholder.png";
+    document.getElementById("imagen-pc").src = "img/placeholder.png";
+
+    // Habilitar los botones otra vez
+    document.getElementById("piedra").disabled = false;
+    document.getElementById("papel").disabled = false;
+    document.getElementById("tijera").disabled = false;
+
+    // Borrar resultado
+    document.getElementById("resultado").innerHTML = "";
+}
+
+document.getElementById("btnReiniciar").addEventListener("click", reiniciarJuego);
